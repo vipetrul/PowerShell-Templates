@@ -1,15 +1,11 @@
 ﻿Set-ExecutionPolicy Unrestricted -Scope Process
 
 $functions = {
-    function b {"Hello B"};
-    function C {"Hello C"};
+    function func1 {"Hello from Func 1"};
+    function func2 {"Hello from Func 2"};
 }
 
-$jobDefinition = {
-    param ($functions, $other)
 
-    Write-Output $another;
-}
 $PID;
 Start-Job -ScriptBlock { 
 $PID;
@@ -20,6 +16,6 @@ Get-Variable | foreach { $_.Visibility = "private" };
 Get-Command | foreach { $_.Visibility = "private" };
 . ([scriptblock]::Create($using:functions));
 
-b;
-c;
+func1;
+func2;
 }  | Wait-Job | Receive-Job
